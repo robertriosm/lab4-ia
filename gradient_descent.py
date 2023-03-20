@@ -22,3 +22,17 @@ def gradient_descent(
         thetas.append(theta.copy())
 
     return theta, costs, thetas
+
+
+
+def regression(X, y, t, cost, grad, step=0.1, n=1000, on_step=None): 
+    costs = []
+    for i in range(n):
+        t -= step * grad(X, y, t)
+        costs.append(cost(X, y, t))
+
+        if on_step:
+            on_step(t)
+    
+    return t, costs
+
